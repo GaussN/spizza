@@ -3,7 +3,7 @@
 ### Catalog for admin:
 ![catalog for admins](./screenshots/catalog-admins.png "Орк")
 ### Cart:
-![cart](./screenshots/screenshots/cart.png "Орк")
+![cart](./screenshots/cart.png "Орк")
 ### Add pizza:
 ![add pizza](./screenshots/add-pizza.png "add pizza")
 ### Make order:
