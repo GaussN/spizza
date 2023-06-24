@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div>
+	<form action="" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{% for er in form.non_field_errors %}
+		<p class="text-danger">{{ er }}</p>
+		{% endfor %}
+		{% for f in form %}
+		<div>
+			<label for="{{ f.id_for_label }}">{{ f.label }}</label>
+			{{ f }}
+			{% for e in f.errors %}
+			<p class="text-danger">{{ e }}</p>
+			{% endfor %}
+		</div>
+		{% endfor %}
+		<button type="submit" class="btn btn-warning">Сохранить</button>
+	</form>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'catalog/scripts/catalog.js' %}"></script>
+{% endblock scripts %}

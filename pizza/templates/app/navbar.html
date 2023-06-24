@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Pizza</a>
+        <div class="navbar-invoke-block"><button class="btn">Меню</button></div>
+        <div class="navbar-collapse justify-content-between">
+            {% include 'catalog/search.html' %}
+            <div>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link catalog" href="{% url 'catalog' %}">Каталог</a></li>
+                    {% if request.user.is_superuser %}
+                    <li class="nav-item"><a class="nav-link add-pizza" href="{% url 'add_pizza' %}">Добавить пиццу</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link cart" href="{% url 'cart' %}">Корзина({{ cart_size }})</a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выйти</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link login" href="{% url 'login' %}">Авторизоваться</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

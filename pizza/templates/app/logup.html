@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <form method="post" style="width: 500px">
+        <div class="non-field-errors">
+            {% for er in form.non_field_errors %}
+            <p class="text-danger">{{ er }}</p>
+            {% endfor %}
+        </div>
+        {% csrf_token %}
+        {% for f in form %}
+        <div>
+            <label if="{{ f.id_for_label }}">{{ f.label }}</label>
+            {{ f }}
+            {% for e in f.errors %}
+            <p class="text-danger">{{ e }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div style="text-align: center">
+            <button style="width: 50%" type="submit" class="btn btn-warning mb-3">Зарегестрироваться</button>
+            <p>Уже есть аккаунт? Войдите в него <a href="{% url 'login' %}">тут</a></p>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'catalog/scripts/catalog.js' %}" defer></script>
+{% endblock scripts %}

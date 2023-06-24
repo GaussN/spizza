@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label class="form-label" for="first-name">Имя:</label>
+            <input id="first-name" class="form-control" value="{{ request.user.first_name }}" type="text" required>
+        </div>
+        <div>
+            <label class="form-label" for="last-name">Фамилия:</label>
+            <input id="last-name" class="form-control" value="{{ request.user.last_name }}" type="text">
+        </div>
+        <div>
+            <label class="form-label" for="phone">Фамилия:</label>
+            <input id="phone" class="form-control" type="tel" placeholder="+375(__)___-__-__"
+                pattern="+375(##)###-##-##" required>
+        </div>
+        <h3>Заказ на сумму {{ price|floatformat:2 }}BYN</h3>
+        <button type="submit" class="btn btn-warning">Всё верно!</button>
+    </form>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'catalog/scripts/catalog.js' %}" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js"
+    type="text/javascript"></script>
+<script>
+    $(() => {
+        $("#phone").mask("+375(99)999-99-99");
+    });
+</script>
+{% endblock scripts %}

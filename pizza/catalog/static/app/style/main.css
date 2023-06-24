@@ -1,0 +1,310 @@
+:root {
+    --main-color: var(--bs-warning);
+    --main-opacity-2-color: rgba(255, 193, 7, 0.1);
+    --dark-color: var(--bs-dark);
+    --dark-opacity-2-color: rgba(150, 150, 150, 0.2);
+    --gray-color: var(--bs-gray);
+}
+
+
+/* navbar */
+.navbar {
+    background-color: var(--dark-opacity-2-color);
+}
+
+a.nav-link,
+a.nav-link:visited {
+    color: var(--dark-color);
+}
+
+a.nav-link.active,
+a.nav-link:hover {
+    color: var(--main-color);
+}
+
+.search-invoke-block {
+    padding-left: 16px;
+    padding-right: 16px;
+    display: none;
+}
+
+.navbar-invoke-block {
+    display: none;
+}
+
+.navbar-invoke-block>button {
+    color: var(--dark-color)
+}
+
+.navbar-invoke-block>button:focus {
+    box-shadow: none;
+}
+
+div.navbar-collapse {
+    width: 90;
+    display: flex;
+}
+
+select:focus,
+textarea:focus,
+input:focus {
+    box-shadow: none !important;
+    border: 1px solid var(--main-color) !important;
+}
+
+
+/* pizza cards */
+.pizza-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: stretch;
+    gap: 20px;
+    row-gap: 10px;
+}
+
+/* .pizza-cards.cart-content {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+} */
+
+div.img-block>img {
+    width: 100%;
+}
+
+.pizza-describe {
+    height: 200px;
+    overflow-y: scroll;
+    text-align: justify;
+}
+
+.catalog-block {
+    width: 80%;
+}
+
+
+
+/* filters */
+.filters-invoke-block {
+    display: none;
+    width: 100%;
+    text-align: right;
+    padding-right: 10pt;
+}
+
+div.filters-block {
+    display: block;
+    width: 30%;
+    height: 500px;
+    background-color: var(--main-opacity-2-color);
+}
+
+.close {
+    display: none;
+}
+
+.sort-link,
+.sort-link:visited,
+.clear-link,
+.filter-link,
+.filter-link:visited {
+    text-decoration: none;
+    color: var(--gray-color);
+}
+
+.sort-link:hover,
+.clear-link:hover,
+.filter-link:hover {
+    color: var(--main-color);
+}
+
+
+/* <=1400 */
+@media (max-width: 1400px) {
+    .pizza-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* .pizza-cards.cart-content {
+        grid-template-columns: 1fr 1fr 1fr;
+    } */
+}
+
+
+
+/* <=992px */
+@media (max-width: 992px) {
+
+    /* сокрытие поиска и фильтров */
+    .search-form-block,
+    div.filters-block {
+        display: none;
+    }
+
+    /* отображение блоков с кнопками вызова поиска и фильтров, отображение блоками карточек с пиццой */
+    .search-invoke-block,
+    .filters-invoke-block,
+    .pizza-cards {
+        display: block;
+    }
+
+    /* из-за сокрытия фильтров можно заполнить пиццой всю страницу */
+    .catalog-block {
+        width: 100%;
+    }
+
+    /* блок содержищй блоки с картинкой и описанием пиццы */
+    .pizza-card>div {
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* блоки с картинкой и описанием пиццы */
+    .pizza-card>div>div {
+        width: 50%;
+        padding: 3pt;
+        position: relative;
+    }
+
+    /* кнопка "В корзину". прижимается к низу */
+    .pizza-add-to-cart {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    /* fixed окна при цзком экране | поиск и фильтры */
+    div.search-form-block,
+    div.filters-block {
+        /* при изменении на block будет появляться на странице */
+        position: fixed;
+        top: 10%;
+        left: 0;
+        z-index: 1;
+        background-color: inherit;
+        justify-content: center;
+        width: 100% !important;
+    }
+
+    /*
+        я не придумал названия этому классу
+        он нужен для отображения раскрытого меню фильтров в адаптивном режиме
+        когда он есть - меню отображается
+        когда нет - нет
+        без него была проблема с оторажением меню в обычном режиме
+        если закрыть его в адаптиве и перейти в обычный режим
+        то оно там пропадало
+    */
+    div.search-form-block.class2,
+    div.filters-block.class2 {
+        display: flex;
+    }
+
+    div.search {
+        padding: 5pt;
+        background-color: white;
+        height: max-content;
+        border-radius: 5pt;
+        box-shadow: 0 0 3pt var(--dark-color);
+    }
+
+    .filters {
+        background-color: white;
+        height: max-content;
+        padding: 30pt;
+        border-radius: 5pt;
+        box-shadow: 0 0 3pt var(--dark-color);
+    }
+
+    .search-close {
+        display: block;
+    }
+
+    .filters-close {
+        display: block;
+        position: relative;
+        top: -20pt;
+        right: -20pt;
+    }
+
+    .close>button {
+        border-radius: 50pt;
+    }
+
+}
+
+
+
+/* <=768px */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+
+    /* при маленьком экране карточка с пиццец снова становится вертикальной */
+    /* блок содержищй блоки с картинкой и описанием пиццы */
+    .pizza-card>div {
+        flex-direction: column;
+    }
+
+    /* блоки с картинкой и описанием пиццы */
+    .pizza-card>div>div {
+        width: 100%;
+    }
+
+
+    .pizza-describe {
+        height: max-content;
+    }
+
+    /* сокрытие навигационной панели */
+    div.navbar-collapse>div,
+    div.search-invoke-block>button {
+        width: 100%;
+    }
+
+    .navbar-invoke-block {
+        display: block;
+    }
+
+    div.navbar-collapse {
+        display: none;
+        flex-direction: column;
+        align-items: start;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1;
+        background-color: white;
+        width: 100%;
+        padding: 5pt;
+    }
+
+    div.navbar-collapse.class2 {
+        display: flex;
+    }
+
+
+    ul.nav {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+/* scrollbar */
+/* for Mozila */
+* {
+    scrollbar-color: orange transparent;
+    scrollbar-width: 10px;
+}
+
+/* for other browsers */
+*::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 50pt;
+}
